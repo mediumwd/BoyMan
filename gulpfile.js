@@ -8,8 +8,8 @@ var gulp        = require('gulp'), // Подключаем Gulp
     del         = require('del'), // Подключаем библиотеку для удаления файлов и папок
     imagemin    = require('gulp-imagemin'),
     cache       = require('gulp-cache'), // Подключаем библиотеку кеширования
-    autoprefixer= require('gulp-autoprefixer');// Подключаем библиотеку для автоматического добавления префиксов
-
+    autoprefixer= require('gulp-autoprefixer'),// Подключаем библиотеку для автоматического добавления префиксов
+    sourcemaps  = require('gulp-sourcemaps');
 gulp.task('sass', function(){ // Создаем таск Sass
     return gulp.src('src/scss/**/*.scss') // Берем источник
         .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
@@ -32,15 +32,17 @@ gulp.task('scripts', function(){
         'src/libs/jquery/dist/jquery.min.js', // Берем jQuery
         'src/libs/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
         ])
+        .pipe(sourcemaps.init())
         .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(uglify()) // Сжимаем JS файл
+        .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest('src/js')); // Выгружаем в папку app/js
 });
 
 gulp.task('css-libs', ['sass'], function() {
     return gulp.src('src/css/main.css') // Выбираем файл для минификации
         .pipe(cssnano()) // Сжимаем
-        .pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
+        .pipe(rename({suffix: '.min'}))// Добавляем суффикс .min
         .pipe(gulp.dest('src/css')); // Выгружаем в папку app/css
 });
 
