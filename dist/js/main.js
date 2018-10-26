@@ -15,5 +15,16 @@ $( document ).ready(function() {
     //default open tab to show
     $('#default-open-tab').show();
     
+    //hash function
+    var hash = window.location.hash,
+        old;
+    
+    $('.case').mouseenter(function(){
+        old = $( this ).css("background-color");
+        $(this).css("background-color", hash);
+    });  
+    $('.case').mouseleave(function(){
+        $(this).css("background-color", old);
+    });
     
 });
