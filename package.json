@@ -19,6 +19,10 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglifyjs": "^0.6.2"
+  },
+  "dependencies": {
+    "gulp-dev": "^0.3.0"
   }
 }
