@@ -1,0 +1,218 @@
+//fonts
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,900'); //as alternative too Helvetica Neue
+
+
+// Font Variables
+$Lato: 'Lato', sans-serif;
+$Heebo: 'Heebo', sans-serif;
+
+@mixin font($family, $size, $weight, $line-height, $color){
+    font-family: $family;
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    line-height: $line-height;
+};
+
+//var
+$content-padding: 0 15px;
+$content-margin: 0 auto;
+
+//set cases hover here
+$bgcolor: #2d2140;
+
+//styles
+body, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+//buttons, input style none
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+//a style none
+a {
+   text-decoration: none;
+   color: inherit;
+}
+//container styles
+.container {
+    padding: $content-padding;
+    margin: $content-margin;
+    max-width: 1200px;
+}
+
+.header {
+    background-color: #333333;
+    @include font($Heebo, 16px, 300, 40.14px, #fff);
+    .container {
+         display: flex;
+        align-items: center;
+    }
+    .logo {
+        margin: auto 0;
+    }
+    .nav{
+        margin-left: auto;
+        ul {
+            li {
+                display: inline-block;
+                list-style: none; 
+                padding: 20px 15px;
+                text-align: right;
+                cursor: pointer;
+                transition: all 0.5s ease;
+                &:hover{
+                    background-color: #5cb68c;
+                }
+            }
+        }
+    }
+    .button {
+        height: 100%;
+        padding: 10px 18px;
+        margin-left: 30px;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        transition: all 0.4s ease;
+        &:hover{
+            background-color: #5cb68c;
+        }
+    }
+}
+.main {
+    .title {
+        @include font($Heebo, 14px, 400, 50px, #000);
+        border-bottom: 1px solid rgb(240,240,240);
+        ul {
+            cursor: default;
+            li {
+                display: inline-block;
+                list-style: none;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .active {
+                color: #5cb68c;
+            }
+        }
+    }
+    .content {
+        h1{
+            @include font($Heebo, 25px, 900, 50px, #000);
+            text-transform: uppercase;
+        }
+        .columns {
+            display: flex;
+            justify-content: flex-start;
+            ul{
+                margin-left: 20px;
+                min-width: 300px;
+                @include font($Lato, 16px, 700, 25px, #000);
+                li {
+                    text-transform: capitalize;
+                }
+            }
+            p {
+                @include font($Lato, 16px, 400, 25px, #141414);
+                margin: 0;
+                max-width: 720px;
+            }
+        }
+    }
+    //flex issue
+    .clients {
+//        padding-bottom: 70px;
+        &.container {
+            padding: 0 0 70px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-items: center;
+            max-width: 1028px;
+            justify-content: center;
+            margin-top: 50px;
+            &-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 10px;
+                height: 87px;
+                max-width: 215px;
+                flex-shrink: 1;
+                img {
+                width: auto;
+                height: auto;
+                }
+            } 
+        }
+    }
+    .cases {
+        .row {
+            display: flex;
+            .case {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                @include font($Lato, 16px, 400, 25px, #fff);
+                width: 50%;
+                height: 390px;
+                transition: all 0.4s ease;
+                &:hover {
+                    background-color: $bgcolor;
+                }
+                p {
+                    padding: 0 10px;
+                    text-align: center;
+                }
+            }
+            .case1 {
+                background-color: #332934;
+                //png?
+                background-image: url(../img/case1_bg_img.png);
+                background-position: center center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            .case2 {
+                background-color: #1d967e;
+            }
+            .case3 {
+                background-color: #e3162c;
+            }
+            .case4 {
+                background-color: #86ae38;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .main .content .columns {
+        flex-direction: column;
+        p {
+            margin-top: 20px;
+        }
+    }
+    .main .cases .row .case {
+        height: 250px;
+    }
+}
+@media screen and (max-width: 520px) {
+    .main .cases .row {
+        flex-direction: column;
+        .case {
+            width: 100%;
+        }
+    }
+}
