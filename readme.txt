@@ -1,5 +1,4 @@
-- Provide instructions for dev/build/watch management in readme:
-
+In this project i using gulp bulder, sass, and some other stuffs:
 
 To run as local server use cmd command "gulp"("gulp watch" is set to default).
 To compile in production version, use "gulp build".
